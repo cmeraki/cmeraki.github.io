@@ -56,6 +56,10 @@ h2 {
     margin-bottom: 0px;
 }
 
+h3 {
+    margin-bottom: 2px;
+}
+
 .container img {
     object-fit: contain;
   /* or
