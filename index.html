@@ -22,32 +22,18 @@
 
 
         <h1>Teachable agents</h1>
-        Agents depend on the underlying LLM to plan and act. What LLM does not know cannot be done by an agent. We are building agents that learn from examples. Here are a few areas we are currently working on:
-        <ol>
-            <li>Imitation learning</li>
-            <li>Action models</li>
-            <li>Screen Parsing</li>
-            <li>Generalisation of learning</li>
-        </ol>
+        GPT compresses all available knowledge on the internet into a model. Agents based on gpt use this information to accomplish tasks. 
 
-        <h3>Why are we building something new?</h3>
-        Today, when we think of AI doing our work, we think of AI agents.
-        <ul>
-            <li>AI agents are powerful tools that can do complicated tasks for you. You can explain the task and they will do it for you
-            (eg: Plan an office party for me). But the limitation lies in a good feedback loop (from the user) and adapting to your
-            personal needs.</li>
-            <li>Most of the current agents use LLMs like GPT. These LLMs compress all available knowledge on the internet and form a
-            world model. Agents based on them use this world model to accomplish tasks.</li>
-            <li>Agents can do what the LLM knows, but cannot be taught new things. These agents can achieve simple tasks for us like
-            booking tickets on websites. But they will not be able to file your taxes for you! Why? Simply because it does not know
-            what tools you use, where you file your taxes, what data you look at etc.</li>
-        </ul>
-        <p>
-            Hence, we are building capabilities to build learnable and teachable AI agents. Anyone can <strong>show</strong> these agents how they
-            prefer to carry out a complex task and the agent can do it independently from next time. This becomes more important
-            when you are using proprietary tools (which a traditional agent doesn’t know how to use so it just keeps guessing) or
-            you have a certain way of doing things.
-        </p>
+Agents can do what gpt knows, but cannot be taught new things. E.g. an agent can play chess against you and defeat you, because gpt knows a lot about chess. But an agent cannot create a website, because gpt:
+ 
+Everyone builds websites differently. Some use figma for design others use drawio. LLM information is general and it doesn't know how you would want to build it. 
+Cannot act. It doesn’t have access to websites or tools needed to design, build or deploy websites. 
+
+But website making can be learnt. We learn by working with other people who make websites, we generalize what we see, ask questions when we have doubts, and test our learning to see if it works. We want to build an agent that can be taught things similarily.  
+
+It is argued that we can also write all steps of a task well and get an agents to do them. Such an explicit description of tasks is impossible in human language. It is like trying to teach someone how to cycle by giving written instructions. It is easier to teach by showing. It is easier to learn by copying and trying. 
+
+        
     </div>
 
 
