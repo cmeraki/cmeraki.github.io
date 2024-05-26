@@ -6,7 +6,7 @@ baseurl: ""
 description: LLM Labs
 permalink: /:slug.html
 favicon: "assets/logo.png"
-theme: no-style-please
+remote_theme: no-style-please
 theme_config:
   appearance: "light"
   back_home_text: ".."
