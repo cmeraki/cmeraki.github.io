@@ -2,7 +2,7 @@
 title: Throughput is all you need
 layout: post
 ---
-<!-- markdownlint-disable MD033 MD036-->
+<!-- markdownlint-disable MD033 MD036 MD053-->
 
 Written by [Romit Jain](https://www.linkedin.com/in/r0m1t/)
 
@@ -13,15 +13,15 @@ If we want to build efficient applications on top of current LLMs, there are cur
 1. Improving **Inference latency**: The speed with which the model returns the tokens per second
 2. Improving **Inference throughput**: The total number of requests that the model can serve in parallel
 
-Inferencing LLMs with lower latency comes down to working around the limitations of the GPU’s memory bandwidth <sup>[1]</sup>. FlashAttention, speculative decoding, and KV caching are ways in which one can improve the latency of the model.
+Inferencing LLMs with lower latency comes down to working around the limitations of the GPU’s memory bandwidth [^1]. FlashAttention, speculative decoding, and KV caching are ways in which one can improve the latency of the model.
 
 Increasing inference throughput comes down to effectively managing the available VRAM of the GPU. Given a limited budget of GPU VRAM, there are various areas where improvements can be made:
 
 1. Reducing the size of the model: By quantization or knowledge distillation eg: GPTQ
-2. Batching<sup>[2]</sup>: Batching more requests in the same amount of GPU VRAM
-3. Separating prefill and decoding stages of generation <sup>[8]</sup>
+2. Batching[^2]: Batching more requests in the same amount of GPU VRAM
+3. Separating prefill and decoding stages of generation[^3]
 
-One can refer to [Nvidia’s blog](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/)<sup>[5]</sup> for an overview of the above concepts.
+One can refer to blog[^4] or [^5] for an overview of the above concepts.
 
 For this blog, let's zoom into one specific aspect of improving throughput, i.e. batching. After the model is loaded in the GPU VRAM, whatever remaining memory is available to us is reserved for the KV cache and serving the requests. The only lever that we can control here apart from the model size is the KV cache. Efficiently managing this KV cache can help us dramatically increase throughput by enabling us to batch more requests. For certain use cases, it can increase the throughput by 20x compared to native HuggingFace implementation.
 
@@ -85,7 +85,7 @@ Since every request might not need 8k tokens, let’s assume that on average eve
 ![alt_text](assets/images/post1/image4.png "image_tooltip")
 
 Figure 4: vLLM token to block mapping.
-Source <sup>[7]</sup>
+Source [^6]
 
 The above solves 2 problems:
 
@@ -112,7 +112,7 @@ Our objective is to predict the behavior of vLLMs and try to replicate them in t
 2. The average number of turns in each chat: 10
 3. Average input token length at each turn in the chat: 150
 4. Average output token length at each turn in the chat: 350
-5. Average latency for each turn in the chat: 10s <sup>[4]</sup>
+5. Average latency for each turn in the chat: 10s [^7]
 6. Average number of tokens required for a single chat session: (150 + 350) * 10 = 5000
 7. The average number of blocks required for a single chat session: is 313 (5000/16)
 
@@ -478,13 +478,13 @@ vLLM does a few more things:
 
 These are some of the references that I have linked throughout the blog and some general recommended reading for getting a better understanding of the concepts we discussed in the blog.
 
-1. [Making Deep Learning go Brrrr From First Principles](https://horace.io/brrr_intro.html)
-2. [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference#the-basics-of-llm-inference)
-3. For a single token generation, the latency is usually bound by the memory bandwidth of the GPU. Considering Nvidia 4090 which has a memory bandwidth of 1008 GB/s and Mistral 7B which has 14 GB parameters, the ideal estimate of latency would be 72 tok/s (1008/14). In the real world, you can expect to get around 60 tok/s
+[^1]: [Making Deep Learning go Brrrr From First Principles](https://horace.io/brrr_intro.html)
+[^2]: [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference#the-basics-of-llm-inference)
+[^3]: [Throughput is Not All You Need: Maximizing Goodput in LLM Serving using Prefill-Decode Disaggregation](https://hao-ai-lab.github.io/blogs/distserve/)
+[^4]: [LLM Inference Performance Engineering: Best Practices](https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices)
+[^5]: [Mastering LLM Techniques: Inference Optimization](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/)
+[^6]: [vLLM](https://blog.vllm.ai/2023/06/20/vllm.html)
+[^7]: For a single token generation, the latency is usually bound by the memory bandwidth of the GPU. Considering Nvidia 4090 which has a memory bandwidth of 1008 GB/s and Mistral 7B which has 14 GB parameters, the ideal estimate of latency would be 72 tok/s (1008/14). In the real world, you can expect to get around 60 tok/s
+
     1. For 600 tokens, the total time comes around to be 10s (600/60)
     2. Refer to this blog for more explanation: [Transformer Inference Arithmetic](https://kipp.ly/transformer-inference-arithmetic/#latency-calculations)
-4. [Mastering LLM Techniques: Inference Optimization](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/)
-5. [LLM Inference Performance Engineering: Best Practices](https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices)
-6. [vLLM](https://blog.vllm.ai/2023/06/20/vllm.html)
-7. [Throughput is Not All You Need: Maximizing Goodput in LLM Serving using Prefill-Decode Disaggregation](https://hao-ai-lab.github.io/blogs/distserve/)
-
