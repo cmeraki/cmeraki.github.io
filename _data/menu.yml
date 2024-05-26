@@ -10,7 +10,7 @@ entries:
       - title: Contact
         url: contact.html
 
-  - title: Blogs
+  - title: Posts
     post_list:
       limit: 10
       show_more: true

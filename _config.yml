@@ -5,10 +5,10 @@ email: compute@merakilabs.com
 baseurl: ""
 description: LLM Labs
 permalink: /:slug.html
-favicon: "logo.png"
+favicon: "assets/logo.png"
 theme: no-style-please
 theme_config:
-  appearance: "auto"
+  appearance: "light"
   back_home_text: ".."
   date_format: "%Y-%m-%d"
   show_description: false
