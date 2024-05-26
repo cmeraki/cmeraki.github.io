@@ -1,0 +1,18 @@
+# For documentation on this file, see:
+# https://github.com/riggraz/no-style-please#customize-the-menu
+
+entries:
+  - title: About
+    entries:
+      - title: LLM Labs is a part of <a href="https://www.merakilabs.com/">Meraki Labs</a>. We aim to train and finetune large transformer based models for specific use cases. We also aim to develop systems for large language models to accelerate their training and inference.
+      - title: GitHub
+        url: https://github.com/cmeraki
+      - title: Contact
+        url: contact.html
+
+  - title: Blogs
+    post_list:
+      limit: 10
+      show_more: true
+      show_more_text: See archive...
+      show_more_url: archive.html
