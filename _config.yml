@@ -1,0 +1,19 @@
+title: LLM Labs
+author: Meraki Labs
+email: compute@merakilabs.com
+# url: https://riggraz.dev
+baseurl: ""
+description: LLM Labs
+permalink: /:slug.html
+favicon: "assets/logo.png"
+remote_theme: no-style-please
+theme_config:
+  appearance: "light"
+  back_home_text: ".."
+  date_format: "%Y-%m-%d"
+  show_description: false
+sass:
+  style: :compressed
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
