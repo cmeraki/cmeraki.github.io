@@ -68,17 +68,18 @@ table, th, td {
 }
 
 code {
-  color: white;
-  background: black;
+    color: black;
+    background: #c4c4c4;
 }
 
 div.highlighter-rouge code {
-  display: block;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  padding: 1rem;
+    display: block;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    padding: 1rem;
+    background-color: #c4c4c4;
+    color: black;
 }
-
 blockquote {
   font-style: italic;
   border: thin solid black;
