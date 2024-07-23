@@ -474,6 +474,21 @@ vLLM does a few more things:
     4. vLLM is working to update this behavior
 3. Queue: vLLM also provides a FastAPI server on top of its backend. It implements queues that store the request that vLLM can not serve if the GPU memory is full
 
+## Citations
+
+For attribution, please cite this as
+
+```
+@article{romit2024throughput,
+  title   = {Throughput is all you need},
+  author  = {Jain, Romit},
+  journal = {cmeraki.github.io},
+  year    = {2024},
+  month   = {April},
+  url     = {https://cmeraki.github.io/throughput-is-all-you-need.html}
+}
+```
+
 ## References
 
 These are some of the references that I have linked throughout the blog and some general recommended reading for getting a better understanding of the concepts we discussed in the blog.
